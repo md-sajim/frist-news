@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
+import { AuthContext } from '../context/AuthProvider/AuthProvider';
 import Footer from '../Pages/Shared/Footer/Footer';
 import Header from '../Pages/Shared/Header/Header';
 import LaftSideNave from '../Pages/Shared/LaftSideNave/LaftSideNave';
 import RightSideNav from '../Pages/Shared/RightSideNav/RightSideNav';
 
 const Main = () => {
+    const a = useContext(AuthContext)
+    console.log(a)
     return (
         <div>
             <Header></Header>
             <Container>
                 <Row>
-                    <Col lg='2'>
+                    <Col lg='2' className='d-none d-lg-block'>
                         <LaftSideNave></LaftSideNave>
                     </Col>
                     <Col lg='7'>
