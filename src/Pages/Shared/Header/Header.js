@@ -38,7 +38,7 @@ const Header = () => {
                         </NavDropdown>
                     </Nav>
                     <Nav>
-                        <Nav.Link href="#deets">
+                        <Link to="/profile">
                             {
                                 user?.photoURL? <Image
                                 className='me-2'
@@ -47,14 +47,14 @@ const Header = () => {
                                 style={{ height: "30px" }}
                             >
                             </Image> : 
-                                <FaUser/>
+                                <FaUser  className='mt-3 me-3 text-white'/>
                             }
-                        </Nav.Link>
-                        <Nav.Link eventKey={2} href="#memes">
+                        </Link>
+                        <>
                             {
                                 user?.uid? 
                                 <>
-                                <span>{user?.displayName}</span>
+                                <span className='text-white pt-2'>{user?.displayName}</span>
                                 <button onClick={hendleLogOut} className='ms-3 fw-bold btn btn-danger'>Log Out</button>
                                 </>
                                 :
@@ -64,7 +64,7 @@ const Header = () => {
                                 </>
                             }
                           
-                        </Nav.Link>
+                        </>
                     </Nav>
                     <div className='d-block d-lg-none'>
                         <LaftSideNave></LaftSideNave>

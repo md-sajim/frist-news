@@ -18,8 +18,8 @@ const NewsSummeryCard = ({ news }) => {
                     >
                     </Image>
                     <div>
-                        <span className='mb-0'>{author?.name}</span>
-                        <span className='mb-0'>{author?.published_date}</span>
+                        <p className='mb-0'>{author?.name}</p>
+                        <p className='mb-0'>{author?.published_date}</p>
                     </div>
                 </div>
                 <div>
@@ -33,8 +33,8 @@ const NewsSummeryCard = ({ news }) => {
                 <Card.Text>
                     {
                         details.length > 250 ?
-                            <p>{details.slice(0, 250) + "..."}<Link to={`/news/${_id}`}>Read More</Link> </p> :
-                            <p>{details}</p>
+                            <>{details.slice(0, 250) + "..."}<Link to={`/news/${_id}`}>Read More</Link> </> :
+                            <>{details}</>
                     }
                 </Card.Text>
             </Card.Body>

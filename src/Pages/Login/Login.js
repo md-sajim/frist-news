@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider/AuthProvider';
 
 const Login = () => {
+    const [error, setError,] = useState('')
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/"
     const navigate = useNavigate()
-    const { signInUser } = useContext(AuthContext);
+    const { signInUser,setLoding } = useContext(AuthContext);
     const hendleSignIn = e => {
         e.preventDefault();
         const form = e.target;
@@ -15,11 +19,20 @@ const Login = () => {
         signInUser(email, password)
         .then(result =>{
             const user = result.user;
-            console.log(user)
+            // console.log(user)
             form.reset()
-            navigate('/')
+            setError("")
+            if(user.emailVerified){
+                navigate(from, {replace:true})
+            }
+            else(
+                toast.error("Please first verifi your email")
+            )
         })
-        .catch(error => console.error(error))
+        .catch(error => setError(error.message))
+        .finally(()=>{
+            setLoding(false)
+        })
     }
     return (
         <Form onSubmit={hendleSignIn}>
@@ -33,7 +46,7 @@ const Login = () => {
                 <Form.Control type="password" name='password' placeholder="Password" required/>
             </Form.Group>
             <Form.Text className="text-danger d-block mb-3 mt-0">
-                We'll never share your email with anyone else.
+                {error}
             </Form.Text>
 
             <Button variant="primary" type="submit">

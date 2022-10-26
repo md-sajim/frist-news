@@ -8,8 +8,6 @@ import LaftSideNave from '../Pages/Shared/LaftSideNave/LaftSideNave';
 import RightSideNav from '../Pages/Shared/RightSideNav/RightSideNav';
 
 const Main = () => {
-    const a = useContext(AuthContext)
-    console.log(a)
     return (
         <div>
             <Header></Header>

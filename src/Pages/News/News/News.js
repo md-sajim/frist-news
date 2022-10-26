@@ -1,14 +1,12 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import { Link } from 'react-router-dom';
-import Image from 'react-bootstrap/Image'
-import { FaBookmark, FaEye, FaShareAlt, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 const News = () => {
     const data = useLoaderData()
     console.log(data)
-    const { author, category_id, details, image_url, total_view, _id, title, rating } = data;
+    const { author,  details, image_url, title, rating } = data;
     return (
         <Card>
             <Card.Img variant="top" className='rounded rounded-0' src={image_url} />
